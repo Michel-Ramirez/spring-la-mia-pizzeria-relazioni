@@ -1,9 +1,10 @@
 package org.java.db.pojo;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import org.hibernate.validator.constraints.Length;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,6 +13,7 @@ import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 
+@Entity
 public class Offert {
 
 	// PROPRIETA' E VALIDAZIONI
@@ -21,47 +23,65 @@ public class Offert {
 	private int id;
 
 	@FutureOrPresent(message = "Invalid date")
-	private LocalDateTime startDateOffert;
+	private LocalDate startDateOffert;
 
 	@Future(message = "Invalid date")
-	private LocalDateTime endDateOffert;
+	private LocalDate endDateOffert;
 
 	@NotBlank(message = "Mandatory field")
 	@Length(min = 5, message = "the title cannot be shorter than 5 characters")
 	private String title;
 
-	// RELATIONSHIP WHITH PIZZA
+	// RELAZIONE CON PIZZA
 
 	@ManyToOne
 	private Pizza pizza;
 
 	// COSTRUTTORE
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Pizza getPizza() {
+		return pizza;
+	}
+
+	public void setPizza(Pizza pizza) {
+		this.pizza = pizza;
+	}
+
 	public Offert() {
 	}
 
-	public Offert(String title, LocalDateTime startDateOffert, LocalDateTime endDateOffert) {
+	public Offert(String title, LocalDate startDateOffert, LocalDate endDateOffert, Pizza pizza) {
 
 		setTitle(title);
 		setStartDateOffert(startDateOffert);
 		setEndDateOffert(endDateOffert);
+
+		setPizza(pizza);
 	}
 
 	// GETTER AND SETTER
 
-	public LocalDateTime getStartDateOffert() {
+	public LocalDate getStartDateOffert() {
 		return startDateOffert;
 	}
 
-	public void setStartDateOffert(LocalDateTime startDateOffert) {
+	public void setStartDateOffert(LocalDate startDateOffert) {
 		this.startDateOffert = startDateOffert;
 	}
 
-	public LocalDateTime getEndDateOffert() {
+	public LocalDate getEndDateOffert() {
 		return endDateOffert;
 	}
 
-	public void setEndDateOffert(LocalDateTime endDateOffert) {
+	public void setEndDateOffert(LocalDate endDateOffert) {
 		this.endDateOffert = endDateOffert;
 	}
 

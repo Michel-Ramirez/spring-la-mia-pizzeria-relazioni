@@ -2,6 +2,7 @@ package org.java.controller;
 
 import java.util.List;
 
+import org.java.db.pojo.Offert;
 import org.java.db.pojo.Pizza;
 import org.java.db.serv.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,8 +54,10 @@ public class MainController {
 		// METODO
 		Pizza p = pizzaService.findById(id);
 
-		model.addAttribute("pizza", p);
+		List<Offert> offerts = p.getOffert();
 
+		model.addAttribute("pizza", p);
+		model.addAttribute("offerts", offerts);
 		return "detail-pizza";
 
 	}
