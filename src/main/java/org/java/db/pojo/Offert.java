@@ -7,11 +7,14 @@ import org.hibernate.validator.constraints.Length;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 
 public class Offert {
+
+	// PROPRIETA' E VALIDAZIONI
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,12 +30,24 @@ public class Offert {
 	@Length(min = 5, message = "the title cannot be shorter than 5 characters")
 	private String title;
 
+	// RELATIONSHIP WHITH PIZZA
+
+	@ManyToOne
+	private Pizza pizza;
+
+	// COSTRUTTORE
+
+	public Offert() {
+	}
+
 	public Offert(String title, LocalDateTime startDateOffert, LocalDateTime endDateOffert) {
 
 		setTitle(title);
 		setStartDateOffert(startDateOffert);
 		setEndDateOffert(endDateOffert);
 	}
+
+	// GETTER AND SETTER
 
 	public LocalDateTime getStartDateOffert() {
 		return startDateOffert;
