@@ -58,17 +58,18 @@ public class Pizza {
 	@ManyToMany
 	private List<Ingredient> ingredients;
 
-	public List<Ingredient> getIngredient() {
+	public List<Ingredient> getIngredients() {
 		return ingredients;
 	}
 
-	public void setIngredient(List<Ingredient> ingredient) {
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
 	}
 
 	// METODO CHE RICEVE UNA LISTA DI INFREDIENTI TRAMITE LO SPRED OPERATOR E LO
 	// STRASFORMA IN UN ARRAY
-	public void setIngredient(Ingredient... ingredients) {
-		setIngredient(Arrays.asList(ingredients));
+	public void setIngredients(Ingredient... ingredients) {
+		setIngredients(Arrays.asList(ingredients));
 	}
 
 	public Pizza() {
@@ -82,6 +83,7 @@ public class Pizza {
 		setDescription(description);
 		setPhoto(photo);
 		setPrice(price);
+		setIngredients(ingredients);
 	}
 
 	public int getId() {

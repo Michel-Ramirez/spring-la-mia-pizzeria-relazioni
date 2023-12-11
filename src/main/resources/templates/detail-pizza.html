@@ -46,7 +46,14 @@
 
         <div class="row">
             <div class="col-8">
-                [[*{description}]]
+                <p>
+                    [[*{description}]]
+                </p>
+                <h4 class="my-3">Ingredients: </h4>
+                <p th:each="ingredient : ${ingredientsList}" th:object="${ingredient}" class="m-0">
+                    
+                    [[*{name}]]
+                </p>
             </div>
             <div class="col-4">
                 <img class="img-fluid" th:src="${pizza.photo}" alt="pizza-photo">

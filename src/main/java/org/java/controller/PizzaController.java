@@ -2,6 +2,7 @@ package org.java.controller;
 
 import java.util.List;
 
+import org.java.db.pojo.Ingredient;
 import org.java.db.pojo.Offert;
 import org.java.db.pojo.Pizza;
 import org.java.db.serv.PizzaService;
@@ -20,7 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jakarta.validation.Valid;
 
 @Controller
-public class MainController {
+public class PizzaController {
 
 	@Autowired
 	private PizzaService pizzaService;
@@ -55,9 +56,11 @@ public class MainController {
 		Pizza p = pizzaService.findById(id);
 
 		List<Offert> offerts = p.getOffert();
+		List<Ingredient> ingList = p.getIngredients();
 
 		model.addAttribute("pizza", p);
 		model.addAttribute("offerts", offerts);
+		model.addAttribute("ingredientsList", ingList);
 		return "detail-pizza";
 
 	}

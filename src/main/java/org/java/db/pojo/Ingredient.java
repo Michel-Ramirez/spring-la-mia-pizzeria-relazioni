@@ -2,7 +2,6 @@ package org.java.db.pojo;
 
 import java.util.List;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,11 +15,21 @@ public class Ingredient {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(columnDefinition = "TEXT")
 	private String name;
 
+	// RELAZIONE
 	@ManyToMany(mappedBy = "ingredients")
-	private List<Pizza> pizza;
+	private List<Pizza> pizzas;
+
+	public List<Pizza> getPizzas() {
+		return pizzas;
+	}
+
+	public void setPizzas(List<Pizza> pizzas) {
+		this.pizzas = pizzas;
+	}
+
+	// COSTRUTTORE
 
 	public Ingredient() {
 	}
@@ -29,6 +38,7 @@ public class Ingredient {
 		setName(name);
 	}
 
+	// GETTER E SETTER
 	public int getId() {
 		return id;
 	}
@@ -43,14 +53,6 @@ public class Ingredient {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public List<Pizza> getPizza() {
-		return pizza;
-	}
-
-	public void setPizza(List<Pizza> pizza) {
-		this.pizza = pizza;
 	}
 
 	@Override
