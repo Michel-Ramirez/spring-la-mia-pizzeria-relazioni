@@ -126,6 +126,7 @@ public class MainController {
 
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("pizza", pizza);
+			System.out.println("pizza-con-errori" + pizza);
 			return "create-update-form";
 		}
 

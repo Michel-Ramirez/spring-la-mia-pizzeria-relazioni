@@ -17,7 +17,7 @@ public class OffertService {
 		return offertRepository.findAll();
 	}
 
-	public Offert fiunfById(int id) {
+	public Offert findById(int id) {
 		return offertRepository.findById(id).get();
 	}
 

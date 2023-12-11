@@ -2,8 +2,6 @@ package org.java.db.pojo;
 
 import java.time.LocalDate;
 
-import org.hibernate.validator.constraints.Length;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,7 +27,6 @@ public class Offert {
 	private LocalDate endDateOffert;
 
 	@NotBlank(message = "Mandatory field")
-	@Length(min = 5, message = "the title cannot be shorter than 5 characters")
 	private String title;
 
 	// RELAZIONE CON PIZZA

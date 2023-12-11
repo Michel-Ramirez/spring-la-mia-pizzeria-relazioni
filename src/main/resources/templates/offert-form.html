@@ -27,15 +27,18 @@
                 <div class="mb-3">
                     <label for="title" class="form-label">Offert's name</label>
                     <input type="text" class="form-control" id="title" th:field="*{title}">
+                    <div th:replace="fragments :: alertError('title')"></div>
                 </div>
                 <div class="mb-3 d-flex justify-content-between">
                     <div>
                         <label for="start-date" class="form-label">Start date</label>
                         <input type="date" class="form-control" id="start-date" th:field="*{startDateOffert}">
+                        <div th:replace="fragments :: alertError('startDateOffert')"></div>
                     </div>
                     <div>
                         <label for="end-date" class="form-label">End date</label>
                         <input type="date" class="form-control" id="end-date" th:field="*{endDateOffert}">
+                        <div th:replace="fragments :: alertError('endDateOffert')"></div>
                     </div>
                 </div>
                 

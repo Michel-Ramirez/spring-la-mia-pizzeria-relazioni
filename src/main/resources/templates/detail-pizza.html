@@ -22,11 +22,16 @@
         </div>
 
         <div class="alert alert-success" th:if="${offerts.size() > 0}">
-            <h5>Pizza currently on offer with the following promotions</h5>
+            <h5>Pizza currently on offert with the following promotions</h5>
 
             <ul>
-                <li th:each="offert : ${offerts}" th:object="${offert}">
-                   <span class="fw-bolder">[[*{title}]]</span> iniziata il <span class="fw-bolder">[[*{startDateOffert}]]</span> con scadenza il <span class="fw-bolder text-danger">[[*{endDateOffert}]]</span>
+                <li th:each="offert : ${offerts}" th:object="${offert}" class="d-flex justify-content-between">
+                    <div>
+                    <span class="fw-bolder">[[*{title}]]</span> iniziata il <span
+                        class="fw-bolder">[[*{startDateOffert}]]</span> con scadenza il <span
+                        class="fw-bolder text-danger">[[*{endDateOffert}]]</span>                        
+                    </div>
+                    <a th:href="@{/offert/edit/{id}(id=${id})}" class="btn btn-sm btn-warning">edit</a>
                 </li>
             </ul>
         </div>
