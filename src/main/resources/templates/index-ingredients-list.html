@@ -38,7 +38,6 @@
                     <th scope="row">[[*{id}]]</th>
                     <td>[[*{name}]]</td>
                     <td class="d-flex justify-content-end">
-                        <a th:href="@{/ingredient/edit/{id}(id=*{id})}" class="btn btn-sm btn-warning me-3">edit</a>
                         <form th:action="@{/ingredients/delete/{id}(id=${ingredient.id})}" method="POST">
                             <button type="submit" class="btn btn-sm btn-danger">delete</button>
                         </form>
