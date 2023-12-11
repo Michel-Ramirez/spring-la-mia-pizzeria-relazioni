@@ -11,9 +11,9 @@
     <header th:replace="fragments :: header"></header>
     <main class="container">
 
-    
+
         <div class="alert alert-info mt-5" th:if="${pizzaDeleted != null}">
-            <p class="m-0">Pizza <span class="fw-bolder">[[${pizzaDeleted.name}]]</span> correctly deleted</p>         
+            <p class="m-0">Pizza <span class="fw-bolder">[[${pizzaDeleted.name}]]</span> correctly deleted</p>
         </div>
 
 
@@ -23,7 +23,7 @@
             <form class="d-flex" role="search" method="get">
                 <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="query"
                     th:value="${query}">
-                <a class="btn btn-outline-success me-3" type="submit">Search</a>
+                <button class="btn btn-outline-success me-3" type="submit">Search</button>
             </form>
 
             <a th:replace="fragments :: button(@{/pizza/create}, 'Add pizza')"></a>
@@ -50,11 +50,11 @@
                     <th scope="row">[[*{id}]]</th>
                     <td>[[*{name}]]</td>
                     <td>[[*{description}]]</td>
-                    <td> - </td>
-<!--                    <td th:if="${ingredients.size() == null}"> - </td>-->
-<!--                    <td th:if="${ingredients.size() > 0}" th:each="ingredient : ${ingredients}" th:object="${ingredient}" >-->
-<!--                        <span>[[*{name}]]</span>-->
-<!--                    </td>-->
+                    <td>
+                        <span th:each="ingredient : ${pizza.ingredients}">
+                            [[${ingredient.name}]],
+                        </span>
+                    </td>
                     <td>€ [[*{price}]]</td>
                     <td class="d-flex justify-content-end">
                         <a th:replace="fragments :: button(@{/pizza/{id}(id=${pizza.id})}, 'view')"></a>

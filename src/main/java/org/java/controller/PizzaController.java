@@ -41,7 +41,12 @@ public class PizzaController {
 	@GetMapping("/")
 	public String getPizzas(Model model, @RequestParam(required = false) String query) {
 
-		List<Pizza> pizzas = query != null ? pizzaService.findByNameOrDescription(query) : getAllPizzas();
+		List<Pizza> pizzas = query != null ? pizzaService.findByPizzaNameOrIngredient(query) : getAllPizzas();
+
+		for (Pizza pizza : pizzas) {
+			List<Ingredient> ingredients = pizzaService.getIngredientsInPizza(pizza.getId());
+			pizza.setIngredients(ingredients);
+		}
 
 		model.addAttribute("query", query);
 		model.addAttribute("pizzasList", pizzas);
