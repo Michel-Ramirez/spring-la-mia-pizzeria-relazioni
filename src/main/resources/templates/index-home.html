@@ -51,6 +51,10 @@
                     <td>[[*{name}]]</td>
                     <td>[[*{description}]]</td>
                     <td> - </td>
+<!--                    <td th:if="${ingredients.size() == null}"> - </td>-->
+<!--                    <td th:if="${ingredients.size() > 0}" th:each="ingredient : ${ingredients}" th:object="${ingredient}" >-->
+<!--                        <span>[[*{name}]]</span>-->
+<!--                    </td>-->
                     <td>€ [[*{price}]]</td>
                     <td class="d-flex justify-content-end">
                         <a th:replace="fragments :: button(@{/pizza/{id}(id=${pizza.id})}, 'view')"></a>

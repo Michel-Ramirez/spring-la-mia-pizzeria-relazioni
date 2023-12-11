@@ -5,6 +5,7 @@ import java.util.List;
 import org.java.db.pojo.Ingredient;
 import org.java.db.pojo.Offert;
 import org.java.db.pojo.Pizza;
+import org.java.db.serv.IngredientService;
 import org.java.db.serv.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,9 @@ public class PizzaController {
 
 	@Autowired
 	private PizzaService pizzaService;
+
+	@Autowired
+	private IngredientService ingredientService;
 
 	private List<Pizza> getAllPizzas() {
 		List<Pizza> pizzasList = pizzaService.findAll();
@@ -71,10 +75,11 @@ public class PizzaController {
 	public String viewForm(Model model) {
 
 		Pizza pizza = new Pizza();
+		List<Ingredient> ingredients = ingredientService.findAll();
 
 		model.addAttribute("pizza", pizza);
-
-		return "create-update-form";
+		model.addAttribute("ingredients", ingredients);
+		return "pizza-crete-edit-form";
 	}
 
 	// METODO PER LA CREAZIONE DI UNA NUOVA PIZZA CHE RICHIAMA IL METODO GENERICO DI
@@ -91,9 +96,12 @@ public class PizzaController {
 	public String editPizza(Model model, @PathVariable int id) {
 
 		Pizza pizza = pizzaService.findById(id);
-		model.addAttribute("pizza", pizza);
 
-		return "create-update-form";
+		List<Ingredient> ingredients = ingredientService.findAll();
+		model.addAttribute("ingredients", ingredients);
+
+		model.addAttribute("pizza", pizza);
+		return "pizza-crete-edit-form";
 	}
 
 	// METODO PER MODIFICARE LE INFORMAZIONI DELLA PIZZA SALVANDOLE NEL DB
@@ -130,7 +138,7 @@ public class PizzaController {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("pizza", pizza);
 			System.out.println("pizza-con-errori" + pizza);
-			return "create-update-form";
+			return "pizza-crete-edit-form";
 		}
 
 		try {
@@ -145,7 +153,7 @@ public class PizzaController {
 			bindingResult.addError(
 					new FieldError("pizza", "name", pizza.getName(), false, null, null, "This pizza already exists"));
 			model.addAttribute("pizza", pizza);
-			return "create-update-form";
+			return "pizza-crete-edit-form";
 		}
 
 	}
