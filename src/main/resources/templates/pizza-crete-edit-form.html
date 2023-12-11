@@ -63,7 +63,8 @@
                     <div th:each="ingredient : ${ingredients}" th:object="${ingredient}" class="form-check me-2">
                         <div>
                             <input class="form-check-input" type="checkbox" value=""
-                                th:id="${'ingredient -' + ingredient.id}" th:value="*{id}" th:field="${pizza.ingredients}">
+                                th:id="${'ingredient -' + ingredient.id}" th:value="*{id}"
+                                th:field="${pizza.ingredients}">
                             <label class="form-check-label" th:for="${'ingredient -' + ingredient.id}">
                                 [[*{name}]]
                             </label>
@@ -84,6 +85,10 @@
         </form>
 
     </main>
+
+    <footer th:fragment="footer" class="d-flex justify-content-center mt-5 pt-5">
+        <p><i class="fs-5">Created with love by Michel Ramirez </i></p>
+    </footer>
 
 </body>
 
