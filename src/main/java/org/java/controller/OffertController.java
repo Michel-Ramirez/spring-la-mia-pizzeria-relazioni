@@ -73,6 +73,19 @@ public class OffertController {
 		return "redirect:/pizza/" + id;
 	}
 
+	@PostMapping("/offert/delete/{id}")
+	public String deleteOff(Model model, @PathVariable int id) {
+
+		Offert off = offertService.findById(id);
+
+		Pizza pizza = off.getPizza();
+
+		offertService.delete(off);
+
+		return "redirect:/pizza/" + pizza.getId();
+
+	}
+
 	public String saveOffert(Model model, @Valid @ModelAttribute Offert offert, Pizza pizza,
 			BindingResult bindingResult) {
 
