@@ -80,10 +80,9 @@ public class PizzaController {
 	public String viewForm(Model model) {
 
 		Pizza pizza = new Pizza();
-		List<Ingredient> ingredients = ingredientService.findAll();
 
 		model.addAttribute("pizza", pizza);
-		model.addAttribute("ingredients", ingredients);
+		model.addAttribute("ingredients", getIngredients(model));
 		return "pizza-crete-edit-form";
 	}
 
@@ -102,8 +101,7 @@ public class PizzaController {
 
 		Pizza pizza = pizzaService.findById(id);
 
-		List<Ingredient> ingredients = ingredientService.findAll();
-		model.addAttribute("ingredients", ingredients);
+		model.addAttribute("ingredients", getIngredients(model));
 
 		model.addAttribute("pizza", pizza);
 		return "pizza-crete-edit-form";
@@ -142,7 +140,7 @@ public class PizzaController {
 
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("pizza", pizza);
-			System.out.println("pizza-con-errori" + pizza);
+			model.addAttribute("ingredients", getIngredients(model));
 			return "pizza-crete-edit-form";
 		}
 
@@ -161,6 +159,11 @@ public class PizzaController {
 			return "pizza-crete-edit-form";
 		}
 
+	}
+
+	public List<Ingredient> getIngredients(Model model) {
+		List<Ingredient> ingredients = ingredientService.findAll();
+		return ingredients;
 	}
 
 }
