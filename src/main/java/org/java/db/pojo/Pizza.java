@@ -1,6 +1,7 @@
 package org.java.db.pojo;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
@@ -11,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
@@ -51,10 +53,30 @@ public class Pizza {
 		this.offert = offert;
 	}
 
+	// RELAZIONE MANY TO MANY CON GLI INGREDIENT
+
+	@ManyToMany
+	private List<Ingredient> ingredients;
+
+	public List<Ingredient> getIngredient() {
+		return ingredients;
+	}
+
+	public void setIngredient(List<Ingredient> ingredient) {
+	}
+
+	// METODO CHE RICEVE UNA LISTA DI INFREDIENTI TRAMITE LO SPRED OPERATOR E LO
+	// STRASFORMA IN UN ARRAY
+	public void setIngredient(Ingredient... ingredients) {
+		setIngredient(Arrays.asList(ingredients));
+	}
+
 	public Pizza() {
 	}
 
-	public Pizza(String name, String description, String photo, BigDecimal price) {
+	// AGGIUNGO AL COSTRUTTORE LA POSSIBILITA' DI RICEVERE UNA LISTA DI INFREDIENTI
+	// CON LO SPRED OPERATOR
+	public Pizza(String name, String description, String photo, BigDecimal price, Ingredient... ingredients) {
 
 		setName(name);
 		setDescription(description);
